@@ -750,7 +750,7 @@ trait NodeTrait
      *
      * @param self $parent
      */
-    public static function create(array $attributes = [], self $parent = null)
+    public static function createWithParent(array $attributes = [], self $parent = null)
     {
         $children = array_pull($attributes, 'children');
 
@@ -766,7 +766,7 @@ trait NodeTrait
         $relation = new EloquentCollection;
 
         foreach ((array)$children as $child) {
-            $relation->add($child = static::create($child, $instance));
+            $relation->add($child = static::createWithParent($child, $instance));
 
             $child->setRelation('parent', $instance);
         }
