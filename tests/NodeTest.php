@@ -598,7 +598,7 @@ class NodeTest extends PHPUnit_Framework_TestCase
 
     public function testCreatesNode()
     {
-        $node = Category::create([ 'name' => 'test' ]);
+        $node = Category::createWithParent([ 'name' => 'test' ]);
 
         $this->assertEquals(23, $node->getLft());
     }
@@ -614,7 +614,7 @@ class NodeTest extends PHPUnit_Framework_TestCase
 
     public function testCreatesTree()
     {
-        $node = Category::create(
+        $node = Category::createWithParent(
         [
             'name' => 'test',
             'children' =>
@@ -981,14 +981,14 @@ class NodeTest extends PHPUnit_Framework_TestCase
     public function testReplication()
     {
         $category = $this->findCategory('nokia');
-        $category = $category->replicate();
+        $category = $category->replicateNode();
         $category->save();
         $category->refreshNode();
 
         $this->assertNull($category->getParentId());
 
         $category = $this->findCategory('nokia');
-        $category = $category->replicate();
+        $category = $category->replicateNode();
         $category->parent_id = 1;
         $category->save();
 

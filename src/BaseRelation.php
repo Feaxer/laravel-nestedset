@@ -79,7 +79,7 @@ abstract class BaseRelation extends Relation
     public function getRelationExistenceQuery(EloquentBuilder $query, EloquentBuilder $parent,
                                               $columns = [ '*' ]
     ) {
-        $query = $this->getParent()->replicate()->newScopedQuery()->select($columns);
+        $query = $this->getParent()->replicateNode()->newScopedQuery()->select($columns);
 
         $table = $query->getModel()->getTable();
 

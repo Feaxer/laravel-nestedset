@@ -151,7 +151,7 @@ class ScopedNodeTest extends PHPUnit_Framework_TestCase
 
     public function testInsertion()
     {
-        $node = MenuItem::create([ 'menu_id' => 1, 'parent_id' => 5 ]);
+        $node = MenuItem::createWithParent([ 'menu_id' => 1, 'parent_id' => 5 ]);
 
         $this->assertEquals(5, $node->parent_id);
         $this->assertEquals(5, $node->getLft());
@@ -164,7 +164,7 @@ class ScopedNodeTest extends PHPUnit_Framework_TestCase
      */
     public function testInsertionToParentFromOtherScope()
     {
-        $node = MenuItem::create([ 'menu_id' => 2, 'parent_id' => 5 ]);
+        $node = MenuItem::createWithParent([ 'menu_id' => 2, 'parent_id' => 5 ]);
     }
 
     public function testDeletion()
