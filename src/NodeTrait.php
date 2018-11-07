@@ -1205,7 +1205,7 @@ trait NodeTrait
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function replicate(array $except = null)
+    public function replicateNode(array $except = null)
     {
         $defaults = [
             $this->getParentIdName(),
@@ -1215,6 +1215,6 @@ trait NodeTrait
 
         $except = $except ? array_unique(array_merge($except, $defaults)) : $defaults;
 
-        return parent::replicate($except);
+        return parent::replicateNode($except);
     }
 }
